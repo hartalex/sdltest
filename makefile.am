@@ -1,0 +1,6 @@
+SUBDIRS = src
+
+bin_PROGRAMS = sdltest
+sdltest_SOURCES = src/main.cpp
+sdltest_CXXFLAGS = -Isrc
+sdltest_LDADD = src/libsdltest.a

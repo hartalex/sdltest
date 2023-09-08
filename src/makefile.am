@@ -1,0 +1,2 @@
+noinst_LIBRARIES = libsdltest.a
+libsdltest_a_SOURCES = $(wildcard *.cpp) $(wildcard *.hpp)
