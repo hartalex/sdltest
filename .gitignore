@@ -7,6 +7,8 @@ autom4te.cache
 makefile
 *.a
 *.o
+*.Po
+.deps
 
 # logs 
 *.log
