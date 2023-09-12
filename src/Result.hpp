@@ -1,33 +1,40 @@
 #pragma once
+#include <string>
 namespace sdltest {
+using namespace std;
+
+const bool RESULT_OK = true;
+const bool RESULT_ERROR = false;
 
 template <class T>
 class Result final {
  public:
-  Result(char const* const msg) {
-    this->ok = false;
-    this->message = msg;
+  Result(const string errorMessage) noexcept {
+    this->isOk = false;
+    this->errorMessage = errorMessage;
     this->value = 0;
   }
-  Result(T val) {
-    this->ok = true;
+  Result(T val) noexcept {
+    this->isOk = true;
     this->value = val;
-    this->message = 0;
-  }
-  Result(const Result<T>& rhs) {
-    this->ok = rhs.ok;
+    this->errorMessage = "";
+  };
+  Result(const Result<T>& rhs) noexcept {
+    this->isOk = rhs.isOk;
     this->value = rhs.value;
-    this->message = rhs.message;
+    this->errorMessage = rhs.errorMessage;
   }
-  ~Result() = default;
-  bool IsOk() const { return this->ok; }
-  char const* const GetMessage() const { return this->message; }
-  T GetValue() const { return this->value; }
+
+  ~Result() noexcept = default;
+
+  bool IsOk() const noexcept { return this->isOk; }
+  const string GetErrorMessage() const noexcept { return this->errorMessage; }
+  T GetValue() const noexcept { return this->value; }
 
  protected:
-  bool ok;
+  bool isOk;
   T value;
-  char const* message;
+  string errorMessage;
 };
 
 }  // namespace sdltest

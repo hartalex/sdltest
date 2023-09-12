@@ -2,10 +2,12 @@
 
 #include <SDL2/SDL.h>
 
+#include <string>
+
 using namespace sdltest;
 
-SDLWindow::SDLWindow(char const* const ttle, int height, int width) {
-  this->title = ttle;
+SDLWindow::SDLWindow(const string title, int height, int width) {
+  this->title = title;
   this->height = height;
   this->width = width;
   this->isInitialized = false;
@@ -18,7 +20,7 @@ SDLWindow::~SDLWindow() {
 }
 
 Result<bool> SDLWindow::Initialize() {
-  this->window = SDL_CreateWindow(this->title, SDL_WINDOWPOS_UNDEFINED,
+  this->window = SDL_CreateWindow(this->title.c_str(), SDL_WINDOWPOS_UNDEFINED,
                                   SDL_WINDOWPOS_UNDEFINED, this->width,
                                   this->height, SDL_WINDOW_SHOWN);
   if (this->window == NULL) {

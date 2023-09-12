@@ -1,13 +1,15 @@
 #pragma once
 #include <SDL2/SDL.h>
 
+#include <string>
+
 #include "Result.hpp"
 
 namespace sdltest {
 
 class SDLWindow final {
  public:
-  SDLWindow(char const* const title, int height, int width);
+  SDLWindow(const string title, int height, int width);
   ~SDLWindow();
   Result<bool> Initialize();
   void Paint();
@@ -18,7 +20,7 @@ class SDLWindow final {
   SDL_Surface* screenSurface;
   int height;
   int width;
-  char const* title;
+  string title;
 };
 
 }  // namespace sdltest
